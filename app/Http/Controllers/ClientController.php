@@ -13,6 +13,10 @@ class ClientController extends Controller
       $client = new Client(['curl' => [CURLOPT_CAINFO => base_path('resources/certs/cacert.pem') ]]);
       $response = $client->request($method, $url, $parameter);
       return $response->getBody()->getContens();
+    }
+    
+    protected function performGetRequest($url, $parameters = [])
+    {
 
     }
 }
