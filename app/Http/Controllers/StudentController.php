@@ -10,6 +10,7 @@ class StudentController extends Controller
 {
     public function getAllStudents()
     {
-      
+        $students = $this->obtainAllStudents();
+        return view('students.all-students', ['students' => $students]);
     }
 }

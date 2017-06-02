@@ -18,11 +18,13 @@ class ClientController extends Controller
     protected function performGetRequest($url)
     {
         $this->performRequest('GET', $url);
+        $decodedContents = json_decode($contents);
+        return $decodedContents->data;
     }
 
     // Function for students
     protected function obtainAllStudents()
     {
-      $contents = $this->performGetRequest('https://lumenapi.juandmegon.com/students');
+      return $this->performGetRequest('https://lumenapi.juandmegon.com/students');
     }
 }
