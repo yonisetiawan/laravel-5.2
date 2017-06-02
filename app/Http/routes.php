@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/students','StudentController@getAllStudents');
+
 Route::get('/', function () {
     return view('main');
 });
