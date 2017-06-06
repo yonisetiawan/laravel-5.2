@@ -12,6 +12,7 @@
 */
 
 Route::get('/students','StudentController@getAllStudents');
+Route::get('/teachers','TeacherController@getAllTeachers');
 
 Route::get('/', function () {
     return view('main');

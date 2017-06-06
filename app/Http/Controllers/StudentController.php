@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use HttpClient\Http\Requests;
 
-class StudentController extends Controller
+class StudentController extends ClientController
 {
     public function getAllStudents()
     {

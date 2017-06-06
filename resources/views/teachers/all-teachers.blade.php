@@ -7,16 +7,18 @@
         <th>Id</th>
         <th>Name</th>
         <th>Address</th>
-        <th>Career</th>
+        <th>Phone</th>
+        <th>Profession</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($students as $student)
+      @foreach ($teachers as $teacher)
         <tr>
-          <td>{{$student->id}}</td>
-          <td>{{$student->name}}</td>
-          <td>{{$student->address}}</td>
-          <td>{{$student->career}}</td>
+          <td>{{$teacher->id}}</td>
+          <td>{{$teacher->name}}</td>
+          <td>{{$teacher->address}}</td>
+          <td>{{$teacher->phone}}</td>
+          <td>{{$teacher->profession}}</td>
         </tr>
       @endforeach
     </tbody>
