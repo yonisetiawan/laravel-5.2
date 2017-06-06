@@ -13,6 +13,7 @@
 
 Route::get('/students','StudentController@getAllStudents');
 Route::get('/teachers','TeacherController@getAllTeachers');
+Route::get('/courses','CoursesController@getAllCourses');
 
 Route::get('/', function () {
     return view('main');

@@ -28,8 +28,16 @@ class ClientController extends Controller
       return $this->performGetRequest('https://lumenapi.juandmegon.com/students');
     }
 
+
+    // Function for teachers
     protected function obtionAllTeachers()
     {
       return $this->performGetRequest('https://lumenapi.juandmegon.com/teachers');
+    }
+
+    // Function for courses
+    protected function obtionAllCourses()
+    {
+      return $this->performGetRequest('https://lumenapi.juandmegon.com/courses');
     }
 }
