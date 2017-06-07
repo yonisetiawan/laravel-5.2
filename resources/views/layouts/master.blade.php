@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="page-header">
-      <h1>Grab <small>Http Client Testing</small></h1>
+      <a href="{{url('/')}}"><h1>Grab <small>Http Client Testing</small></h1></a>
     </div>
     <div class="container-fluid">
       @yield('content')
