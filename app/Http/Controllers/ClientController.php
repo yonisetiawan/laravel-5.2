@@ -8,6 +8,7 @@ use HttpClient\Http\Requests;
 
 class ClientController extends Controller
 {
+    //Request To API
     protected function performRequest($method, $url, $parameters = [])
     {
       $client = new Client(['curl' => [CURLOPT_CAINFO => base_path('resources/certs/cacert.pem') ]]);
@@ -15,6 +16,43 @@ class ClientController extends Controller
       return $response->getBody()->getContents();
     }
 
+    //GET Token
+    protected function obtainAccessToken()
+    {
+      $grantType = config('api.grant_type');
+      $clientId = config('api.client_id');
+      $clientSeret = config('api.client_secret');
+
+      $contents = $this->performRequest('POST','https://lumenapi.juandmegon.com/oauth/access_token',[
+        'form_params' => [
+          'grant_type' => $grantType,
+          'client_id' => $clientId,
+          'client_secret' => $clientSeret,
+        ]
+      ]);
+      $decodedContents = json_decode($contents);
+      $accessToken = $decodedContents->access_token;
+      return $accessToken;
+    }
+
+    //Authorization
+    protected function performAuthorizedRequest($method, $url, $formParamters = [])
+    {
+      $requestParameters['form_params'] = $formParamters;
+      $accessToken = 'Bearer' . $this->obtainAccessToken();
+      $requestParameters['headers']['Authorization'] = $accessToken;
+      return $this->performRequest($method, $url, $requestParameters);
+    }
+
+    // POST
+    protected function performPostRequest($url, $parameters = [])
+    {
+      $contents = $this->performAuthorizedRequest('POST', $url, $parameters);
+      $decodedContents = json_decode($contents);
+      return $decodedContents->data;
+    }
+
+    //GET
     protected function performGetRequest($url)
     {
         $contents = $this->performRequest('GET', $url);
@@ -22,12 +60,12 @@ class ClientController extends Controller
         return $decodedContents->data;
     }
 
+
     // Function for students
     protected function obtainAllStudents()
     {
       return $this->performGetRequest('https://lumenapi.juandmegon.com/students');
     }
-
     protected function obtainOneStudent($studentId)
     {
       return $this->performGetRequest("https://lumenapi.juandmegon.com/students/{$studentId}");
@@ -39,7 +77,6 @@ class ClientController extends Controller
     {
       return $this->performGetRequest('https://lumenapi.juandmegon.com/teachers');
     }
-
     protected function obtainOneTeacher($teacherId)
     {
       return $this->performGetRequest("https://lumenapi.juandmegon.com/teachers/{$teacherId}");
@@ -50,7 +87,6 @@ class ClientController extends Controller
     {
       return $this->performGetRequest('https://lumenapi.juandmegon.com/courses');
     }
-
     protected function obtainOneCourses($coursesId)
     {
       return $this->performGetRequest("https://lumenapi.juandmegon.com/courses/{$coursesId}");
