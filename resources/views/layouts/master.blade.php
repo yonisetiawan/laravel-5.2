@@ -12,8 +12,12 @@
     <div class="page-header">
       <a href="{{url('/')}}"><h1>Grab <small>Http Client Testing</small></h1></a>
     </div>
+
+    @include('components.success')
+
     <div class="container-fluid">
       @yield('content')
     </div>
+    
   </body>
 </html>

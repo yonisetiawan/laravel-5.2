@@ -36,12 +36,15 @@ class ClientController extends Controller
     }
 
     //Authorization
-    protected function performAuthorizedRequest($method, $url, $formParamters = [])
+    protected function performAuthorizedRequest($method, $url, $formParameters = [])
     {
-      $requestParameters['form_params'] = $formParamters;
-      $accessToken = 'Bearer' . $this->obtainAccessToken();
-      $requestParameters['headers']['Authorization'] = $accessToken;
-      return $this->performRequest($method, $url, $requestParameters);
+        $requestParameters['form_params'] = $formParameters;
+
+        $accessToken = 'Bearer ' . $this->obtainAccessToken();
+
+        $requestParameters['headers']['Authorization'] = $accessToken;
+
+        return $this->performRequest($method, $url, $requestParameters);
     }
 
     // POST
@@ -69,6 +72,11 @@ class ClientController extends Controller
     protected function obtainOneStudent($studentId)
     {
       return $this->performGetRequest("https://lumenapi.juandmegon.com/students/{$studentId}");
+    }
+
+    protected function createOneStudent($parameters)
+    {
+      return $this->performPostRequest('https://lumenapi.juandmegon.com/students', $parameters);
     }
 
 

@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/student/create','StudentController@getCreateStudent');
+Route::post('/student/createss', 'StudentController@postCreateStudent');
+
 Route::get('/course','CoursesController@getInputCourses');
 Route::post('/course','CoursesController@postOneCourses');
 
