@@ -7,6 +7,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Address</th>
+        <th>Phone</th>
         <th>Career</th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
           <td>{{$student->id}}</td>
           <td>{{$student->name}}</td>
           <td>{{$student->address}}</td>
+          <td>{{$student->phone}}</td>
           <td>{{$student->career}}</td>
         </tr>
       @endforeach

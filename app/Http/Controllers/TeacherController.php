@@ -3,6 +3,7 @@
 namespace HttpClient\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Cache\ApcStore;
 
 use HttpClient\Http\Requests;
 
@@ -24,5 +25,18 @@ class TeacherController extends ClientController
       $teacherId = $request->get('teacherId');
       $teacher = $this->obtainOneTeacher($teacherId);
       return view('teachers.one-teacher', ['teacher' => $teacher]);
+    }
+
+    //Show Input Create Teacher
+    public function getCreateTeacher()
+    {
+      return view('teachers.create-teacher');
+    }
+
+    // Show All List Teacher With a Teacher Has Been Created
+    public function postCreateTeacher(Request $request)
+    {
+      $message = $this->createOneTeacher($request->all());
+      return redirect('/teachers')->with('success', $message);
     }
 }
