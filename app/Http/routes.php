@@ -11,6 +11,22 @@
 |
 */
 
+Route::get('/teacher/remove','TeacherController@getRemoveTeacher');
+Route::post('/teacher/remove','TeacherController@postRemoveTeacher');
+Route::delete('/teacher/remove','TeacherController@deleteRemoveTeacher');
+
+Route::get('/student/remove','StudentController@getRemoveStudent');
+Route::post('/student/remove','StudentController@postRemoveStudent');
+Route::delete('/student/remove','StudentController@deleteRemoveStudent');
+
+Route::get('/teacher/update','TeacherController@getUpdateTeacher');
+Route::post('/teacher/update','TeacherController@postUpdateTeacher');
+Route::put('/teacher/update','TeacherController@putUpdateTeacher');
+
+Route::get('/student/update','StudentController@getUpdateStudent');
+Route::post('/student/update','StudentController@postUpdateStudent');
+Route::put('/student/update', 'StudentController@putUpdateStudent');
+
 Route::get('/teacher/create', 'TeacherController@getCreateTeacher');
 Route::post('/teacher/create', 'TeacherController@postCreateTeacher');
 

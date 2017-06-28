@@ -62,6 +62,23 @@ class ClientController extends Controller
         $decodedContents = json_decode($contents);
         return $decodedContents->data;
     }
+    //update
+    protected function performPutRequest($url, $parameters)
+    {
+      $contents = $this->performAuthorizedRequest('PUT', $url, $parameters);
+      $decodedContents = json_decode($contents);
+      return $decodedContents->data;
+    }
+
+    //delete
+    protected function performDeleteRequest($url, $parameters = [])
+    {
+      $contents = $this->performAuthorizedRequest('DELETE',$url, $parameters);
+      $decodedContents = json_decode($contents);
+      return $decodedContents->data;
+    }
+
+
 
 
     // Function for students
@@ -79,6 +96,18 @@ class ClientController extends Controller
       return $this->performPostRequest('https://lumenapi.juandmegon.com/students', $parameters);
     }
 
+    protected function updateOneStudent($parameters)
+    {
+      $studentId = $parameters['id'];
+      return $this->performPutRequest("https://lumenapi.juandmegon.com/students/{$studentId}", $parameters);
+    }
+
+    protected function removeOneStudent($parameters)
+    {
+      $studentId = $parameters['id'];
+      return $this->performDeleteRequest("https://lumenapi.juandmegon.com/students/{$studentId}");
+    }
+
 
     // Function for teachers
     protected function obtionAllTeachers()
@@ -93,6 +122,18 @@ class ClientController extends Controller
     protected function createOneTeacher($parameters)
     {
       return $this->performPostRequest('https://lumenapi.juandmegon.com/teachers', $parameters);
+    }
+
+    protected function updateOneTeacher($parameters)
+    {
+      $teacherId = $parameters['id'];
+      return $this->performPutRequest("https://lumenapi.juandmegon.com/teachers/{$teacherId}",$parameters);
+    }
+
+    protected function removeOneTeacher($parameters)
+    {
+      $teacherId = $parameters['id'];
+      return $this->performDeleteRequest("https://lumenapi.juandmegon.com/teachers/{$teacherId}");
     }
 
     // Function for courses
